@@ -1,0 +1,12 @@
+virsh reference:
+
+Node
+
+VM
+  start			- 
+  shutdown		- soft shutdown 
+  suspend		- suspend to RAM
+  destroy		- hard shutdwon (power down)
+  undefine		- remove the XML configuration from LibVirtd daemon
+  save			- suspend to disk
+  restore		- restore from disk image

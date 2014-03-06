@@ -1,0 +1,11 @@
+
+Deleyed inserts (delay_key_write = ALL)
+
+Character encoding issues
+- easy fix would be to use the init_connct variable
+
+Recovery
+- skip-grant-tables
+- init-file
+
+
