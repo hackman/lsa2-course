@@ -1,0 +1,5 @@
+1. List all files(symlinks and ordinary files) required to run curl from chrooted environment.
+2. Send me the required cgconfig.conf configuration file which will mount all cgroups that are supported in the latest 3.12.x kernel.
+3. Send me the required cgrules.conf rules for putting all programs executed by user jony(uid 400) in the cpuset cgroup mounted in /cgroups/geeks/jony
+4. Send me the required commands to make a shared bind mount with read only base.
+5. Write a simple C program that will start bash in a PID name space defined by FD given on the cmd line.
