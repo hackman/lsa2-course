@@ -1,0 +1,17 @@
+http://bind-dlz.sourceforge.net/postgresql_driver.html
+
+dlz "postgres zone" {
+   database "postgres 1
+   {host=127.0.0.1 port=5432 dbname=server user=named}
+   {select zone from dns.records where zone = '%zone%' limit 1}
+   {select ttl, type, mx_priority, case when lower(type)='txt' then '\"'
+         || data || '\"' when lower(type)='soa' then data || ' ' || resp_person || ' '
+         || serial || ' ' || refresh || ' ' || retry || ' ' || expire || ' ' || minimum
+         else data end from dns.records where zone = '%zone%' and host = '%record%'}
+   {}
+   {select ttl, type, host, mx_priority, case when lower(type)='txt' then '\"'
+         || data || '\"' else data end, resp_person, serial, refresh, retry, expire,
+        minimum from dns.records where zone = '%zone%'}
+   {select zone from dns.transfers where zone = '%zone%' and client = '%client%'}";
+};
+
