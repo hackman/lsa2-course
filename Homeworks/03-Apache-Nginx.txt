@@ -1,0 +1,9 @@
+1. Create the needed configuration to setup Apache working with splitlogs. Show only the configuration needed for logging.
+2. Show the needed configuration for reverse proxying a site with Apache.
+3. Show the needed configuration for reverse proxying a site with Nginx.
+4. What problems can be expected when using reverse proxy to a site running with different hostname? What are the solutions?
+5. Show a caching example of Nginx.
+6. Write a mod_security rule that will block requests of the following type:
+  http://somedomain.com/index.php?com=com_bad&va=http://IP:PORT/images/b.php&login=now
+7. Write a mod_naxsi rule taht will block requests of the following type:
+  http://somedomain.com/index.php?com=com_bad&va=http://IP:PORT/images/b.php&login=now
