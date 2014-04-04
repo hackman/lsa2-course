@@ -1,0 +1,2 @@
+1. Send me the configuration needed to delegate the reverse records for 192.168.0.128/27 to NS with hostname lsa.yuhu.biz
+2. Describe how you would run DHCPD on two separate physical interfaces eth0 and eth1 and will ensure that IP from 192.168.0.0/24 are assigned only to clients on eth0 and IPs from 192.168.1.0./24 are assigned only to clients on eth1
