@@ -1,0 +1,39 @@
+BIND
+- build & install
+- DB setup
+- named.conf
+ - sections
+ - options
+- zones
+ - forward
+   - root zone
+ - reverse
+- master/slave setup
+- rndc
+
+DHCP
+- build & install
+- dhcpd.conf
+- PXE
+- tftp
+
+BIND configuration file structure:
+	options { };
+	controls { };
+	zone {};
+		
+	view { 
+	   zone {};
+	};
+
+
+DHCP configuration file structure:
+	option ;
+	option ;
+	option ;
+	subnet IP netmask MASK {
+
+	}
+	shared-network name {
+
+	}
