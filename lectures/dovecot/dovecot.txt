@@ -1,0 +1,54 @@
+
+1. Building from source
+2. Architecture overview
+3. Mailbox and Maildir formats
+4. Authentication
+  - virtual password file
+  - SQL
+5. Basic configuration
+6. Sieve Scripts
+
+Commands:
+* doveadm - various administrative tasks
+  - who is logged in: who
+  - disconnect(kick) user(s): kick
+  - read user's mailbox: fetch
+  - search user's mailbox: search
+  - reopen logfiles: log
+* doveconf
+  - display dovecot configuration
+* dsync 
+  - used for copy/mirror and convert mboxes and maildirs
+* dovecot
+  - the actual dovecot server
+
+
+Architecture
+ - Multiple services separation
+ - anvil
+ - auth
+ - config
+ - log 
+ - imap imap-login
+ - pop3 pop3-login
+ - managesieve
+  https://wiki.dovecot.org/Services
+
+Mailbox vs. Maildir
+ - mailbox - single file
+ - Maildir - tmp/cur/new dirs and file per email
+
+Authentication
+
+
+Basic configuration
+  /etc/dovecot
+    - dovecot.conf
+    - dovecot-sql.conf.ext
+    - dovecot-quota-sql.conf.ext
+    - dovecot-trash.conf.ext
+    - 
+  /etc/dovecot/conf.d
+  
+
+Sieve scripts

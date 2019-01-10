@@ -1,0 +1,5 @@
+driver = pgsql
+connect = host=127.0.0.1 dbname=postfix user=postfix_ro password='XXXXX'
+default_pass_scheme = PLAIN-MD5
+password_query = SELECT username AS user,password FROM mailbox WHERE username = '%u' AND active='1'
+user_query = SELECT maildir, 502 AS uid, 502 AS gid, '*:bytes=' || quota AS quota_rule FROM mailbox WHERE username = '%u' AND active='1'
