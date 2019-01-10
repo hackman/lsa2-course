@@ -1,0 +1,80 @@
+
+URL: http://www.postfix.org
+
+Build from source:
+ # make tidy
+ # make -f Makefile.init makefiles pie=yes shared=yes dynamicmaps=yes \
+		"CCARGS=-DHAS_SQLITE -I/usr/include \
+			-DHAS_PGSQL -I/usr/include/pgsql \
+			-DHAS_PCRE $(pcre-config --cflags)" \
+        'AUXLIBS_PGSQL=-L/usr/lib -lpq' \
+     	'AUXLIBS_SQLITE=-L/usr/lib -lsqlite3 -lpthread' \
+    	"AUXLIBS_PCRE=$(pcre-config --libs)"
+
+
+Documentation overview:
+ 1. building from source
+ 2. Architecture - http://www.postfix.org/OVERVIEW.html
+ 3. Lookup tables - http://www.postfix.org/DATABASE_README.html
+ 4. Address verification - http://www.postfix.org/ADDRESS_VERIFICATION_README.html
+ 5. Address rewriting - http://www.postfix.org/ADDRESS_REWRITING_README.html
+ 6. Relay Access - http://www.postfix.org/SMTPD_ACCESS_README.html
+ 7. Authentication - http://www.postfix.org/SASL_README.html
+ 8. Working with restrictions - http://www.postfix.org/RESTRICTION_CLASS_README.html
+
+Configuration:
+ /etc/postfix/
+    - main.cf
+    - master.cf (man 5 master)
+ Main configuration directives (main.cf):
+   mail_owner = postfix
+   myhostname = host.domain.tld
+   mydomain = domain.tld
+   myorigin = $myhostname
+   #myorigin = $mydomain
+   inet_interfaces = localhost
+   mydestination = $myhostname, localhost.$mydomain, localhost
+
+   #mynetworks_style = class
+   #mynetworks_style = subnet
+   #mynetworks_style = host
+
+   #mynetworks = 168.100.189.0/28, 127.0.0.0/8
+   #mynetworks = $config_directory/mynetworks
+   #mynetworks = hash:/etc/postfix/network_table
+   #relay_domains = $mydestination
+
+ Configuring the services started by postfix(master.cf):
+
+Advanced configuration:
+  smtpd_client_restrictions		- used to restrict IP/hostnames 
+  smtpd_helo_restrictions		- used to restrict HELO/EHLO commands
+  smtpd_sender_restrictions		- used to restrict MAIL FROM commands
+  smtpd_recipient_restrictions	- used to restrict RCPT TO commands
+  smtpd_relay_restrictions		- also used to restrict RCPT TO
+  smtpd_data_restrictions		- used to restrict DATA commands and contents
+  
+   
+
+Commands:
+ - postfix - start/stop/restart/reload postfix
+ - postconf - list current postfix configuration (-d to get the default value)
+ - postmap - rebuild the lookup table files
+   - supported file types: btree cdb hash dbm sdbm
+   - dbm and sdbm require two files (.pag and .dir)
+ - postqueue - Postfix queue control
+   - flush the queue (-f)
+   - immediate delivery (-i msg_id)
+ - postsuper - More queue control
+   - delete message (-d msg_id)
+   - put/release on hold (-h/-H msg_id)
+   - requeue (-r msg_id)
+   - purge temporary files (-P)
+   - structure check and repair (-s)
+ - mailq - list the mails in the queue
+ - sendmail - sendmail compatible interface (also used to send e-mails)
+ - postdrop - create an email into the postfix queue
+ - postcat - cat a mail from the queue
+ - postmulti - Postfix multi-instance manager
+
+
